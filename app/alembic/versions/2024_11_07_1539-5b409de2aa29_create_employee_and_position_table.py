@@ -1,8 +1,8 @@
 """create employee and  position table
 
-Revision ID: 814616089421
-Revises: 2419fe82b9b1
-Create Date: 2024-11-07 13:29:47.694155
+Revision ID: 5b409de2aa29
+Revises: e3ab45c0cab9
+Create Date: 2024-11-07 15:39:08.070483
 
 """
 
@@ -13,8 +13,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "814616089421"
-down_revision: Union[str, None] = "2419fe82b9b1"
+revision: str = "5b409de2aa29"
+down_revision: Union[str, None] = "e3ab45c0cab9"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -27,6 +27,7 @@ def upgrade() -> None:
         sa.Column("title", sa.String(), nullable=False),
         sa.Column("rights", sa.String(), nullable=True),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_positions")),
+        sa.UniqueConstraint("title", name=op.f("uq_positions_title")),
     )
     op.create_table(
         "employees",
@@ -39,6 +40,7 @@ def upgrade() -> None:
             name=op.f("fk_employees_department_id_departments"),
         ),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_employees")),
+        sa.UniqueConstraint("name", name=op.f("uq_employees_name")),
     )
     op.create_table(
         "employee_position",

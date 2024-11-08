@@ -1,8 +1,8 @@
 """create department table
 
-Revision ID: 2419fe82b9b1
+Revision ID: e3ab45c0cab9
 Revises: 
-Create Date: 2024-11-07 13:24:13.699094
+Create Date: 2024-11-07 15:38:43.133052
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "2419fe82b9b1"
+revision: str = "e3ab45c0cab9"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -32,6 +32,7 @@ def upgrade() -> None:
             name=op.f("fk_departments_parent_id_departments"),
         ),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_departments")),
+        sa.UniqueConstraint("name", name=op.f("uq_departments_name")),
     )
     # ### end Alembic commands ###
 
