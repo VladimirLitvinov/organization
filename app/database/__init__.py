@@ -4,7 +4,8 @@ __all__ = (
     "Position",
     "Employee",
     "employee_position",
+    "departament_position",
 )
 
 from .base import Base
-from .models import Department, employee_position, Position, Employee
+from .models import Department, employee_position, Position, Employee, departament_position

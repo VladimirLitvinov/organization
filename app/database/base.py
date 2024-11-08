@@ -1,5 +1,6 @@
 from typing import AsyncGenerator
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, \
+    create_async_engine, AsyncAttrs
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import MetaData
 
@@ -16,7 +17,7 @@ naming_convention: dict[str, str] = {
 }
 
 
-class Base(DeclarativeBase):
+class Base(DeclarativeBase, AsyncAttrs):
     __abstract__ = True
 
     metadata = MetaData(
