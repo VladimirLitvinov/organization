@@ -1,6 +1,19 @@
 version: '3.8'
 
 services:
+  app:
+    container_name: app
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    logging:
+      driver: "local"
+
   postgres:
     image: postgres
     container_name: db
